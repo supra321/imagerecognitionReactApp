@@ -1,26 +1,117 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{Component} from 'react';
+import Particles from 'react-particles-js';
+import ImageURLInput from './components/ImageURLInput/ImageURLInput'
+import InputNumbers from './components/InputNumbers/InputNumbers'
+import Logo from './components/Logo/Logo'
+import SignOut from './components/Navigation/SignOut'
+import LogIn from './components/Navigation/LogIn'
+import SignUp from './components/Navigation/SignUp'
+import TravelRecognition from './components/TravelRecognition/TravelRecognition'
+import TravelData from './components/TravelRecognition/TravelData'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const particleProperties={
+  "particles": {
+    "number": {
+      "value": 380,
+      "density": {
+        "enable": true,
+        "value_area": 800
+      }
+    }
+  }
+}
+
+const initialState={
+  imageInput: '',
+  imageURL: 'https://portal.clarifai.com/cms-assets/20180320215302/moderation-005.jpg',
+  imageData: [],
+  navigationStatus: 'login',
+  isSignedIn: false,
+  user:{
+    id: '',
+    name: '',
+    email: '',
+    /*password: '',*/
+    rank: 0,
+    joined:''
+  }
+}
+
+class App extends Component{
+  constructor (){
+    super()
+    this.state=initialState;
+  }
+  loadUser=(userData)=>{
+    this.setState({user:{
+      id: userData.id,
+      name: userData.name,
+      email: userData.email,
+      /*password: userData.password,*/
+      rank: userData.rank,
+      joined:userData.joined
+    }})
+  }
+  onImageChange=(event)=>{
+    this.setState({imageInput: event.target.value});
+  }
+  onDetect=()=>{
+    this.setState({imageURL: this.state.imageInput});
+    fetch('https://imagerecognitionapi.herokuapp.com/imageurl',{
+      method:'post',
+      headers:{'Content-Type': 'application/json'},
+      body:JSON.stringify({
+        imageInput:this.state.imageInput
+      })
+    })
+    .then(response=>response.json())
+    .then(response=>{
+      this.setState({imageData: response.outputs[0].data.concepts});
+      if(response){
+        fetch('https://imagerecognitionapi.herokuapp.com/rank',{
+          method:'put',
+          headers:{'Content-Type': 'application/json'},
+          body:JSON.stringify({
+            id:this.state.user.id
+          })
+        })
+        .then(response=>response.json())
+        .then(ranking=>{this.setState(Object.assign(this.state.user,{rank:ranking}))})
+        .catch(err=>console.log("Server failure!!!"));
+        }
+      }
+    )
+    .catch(err=>console.log("Clarifai API failure. Check Network Connection!!!"));
+  }
+  onNavigationStatusChange=(status)=>{
+    status==='home'?this.setState({isSignedIn: true}):this.setState(initialState);
+    this.setState({navigationStatus: status});
+  }
+  render() {
+    const{imageURL,imageData,navigationStatus,isSignedIn}=this.state;
+    return (
+      <div className="App">
+        <Particles className='particles' params={particleProperties} />
+        <SignOut isSignedIn={isSignedIn} onNavigationStatusChange={this.onNavigationStatusChange} />
+        {navigationStatus==='login'?<LogIn onNavigationStatusChange={this.onNavigationStatusChange} loadUser={this.loadUser}/>:
+          (navigationStatus==='signup'?<SignUp onNavigationStatusChange={this.onNavigationStatusChange} loadUser={this.loadUser}/>:
+            <div>
+              <div className='flex'>
+                <Logo />
+                <InputNumbers name={this.state.user.name} rank={this.state.user.rank}/>
+              </div>
+              <ImageURLInput onImageChange={this.onImageChange} onDetect={this.onDetect}/>
+              <div className='flex'>
+                <TravelRecognition imageURL={imageURL}/>
+                <TravelData imageData={imageData}/>
+              </div>
+            </div>
+          )
+        }
+      </div>
+    );
+  }
 }
 
 export default App;
