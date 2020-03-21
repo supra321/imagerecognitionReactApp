@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/imagerecognitionReactApp/static/css/main.c0ac1fb3.chunk.css",
+    "main.js": "/imagerecognitionReactApp/static/js/main.b364f92c.chunk.js",
+    "main.js.map": "/imagerecognitionReactApp/static/js/main.b364f92c.chunk.js.map",
+    "runtime-main.js": "/imagerecognitionReactApp/static/js/runtime-main.c8f38cb4.js",
+    "runtime-main.js.map": "/imagerecognitionReactApp/static/js/runtime-main.c8f38cb4.js.map",
+    "static/css/2.eb45ad44.chunk.css": "/imagerecognitionReactApp/static/css/2.eb45ad44.chunk.css",
+    "static/js/2.aac0c729.chunk.js": "/imagerecognitionReactApp/static/js/2.aac0c729.chunk.js",
+    "static/js/2.aac0c729.chunk.js.map": "/imagerecognitionReactApp/static/js/2.aac0c729.chunk.js.map",
+    "index.html": "/imagerecognitionReactApp/index.html",
+    "precache-manifest.467b8f14436b03ea9569aa1c019e14bf.js": "/imagerecognitionReactApp/precache-manifest.467b8f14436b03ea9569aa1c019e14bf.js",
+    "service-worker.js": "/imagerecognitionReactApp/service-worker.js",
+    "static/css/2.eb45ad44.chunk.css.map": "/imagerecognitionReactApp/static/css/2.eb45ad44.chunk.css.map",
+    "static/css/main.c0ac1fb3.chunk.css.map": "/imagerecognitionReactApp/static/css/main.c0ac1fb3.chunk.css.map",
+    "static/js/2.aac0c729.chunk.js.LICENSE": "/imagerecognitionReactApp/static/js/2.aac0c729.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c8f38cb4.js",
+    "static/css/2.eb45ad44.chunk.css",
+    "static/js/2.aac0c729.chunk.js",
+    "static/css/main.c0ac1fb3.chunk.css",
+    "static/js/main.b364f92c.chunk.js"
+  ]
+}
