@@ -5,7 +5,8 @@ class LogIn extends Component{
 		super(props);
 		this.state={
 			logInEmail:'',
-			logInPassword:''
+			logInPassword:'',
+			incorrectCombination:false
 		}
 	}
 	onEmailChange=(event)=>{
@@ -14,25 +15,28 @@ class LogIn extends Component{
 	onPasswordChange=(event)=>{
 		this.setState({logInPassword: event.target.value})
 	}
-	onSubmitLogIn=()=>{
-		fetch('https://imagerecognitionapi.herokuapp.com/login',{
-			method: 'post',
-			headers: {'Content-Type':'application/json'},
-			body: JSON.stringify({
-				email:this.state.logInEmail,
-				password:this.state.logInPassword
+	onSubmitLogIn=(event)=>{
+		if(event.key === 'Enter' || event.type ==='click'){
+			fetch('https://imagerecognitionapi.herokuapp.com/login',{
+				method: 'post',
+				headers: {'Content-Type':'application/json'},
+				body: JSON.stringify({
+					email:this.state.logInEmail,
+					password:this.state.logInPassword
+				})
 			})
-		})
-		.then(response=>response.json())
-		.then(user=>{
-			if(user.id){
-				this.props.loadUser(user);
-				this.props.onNavigationStatusChange('home');
-			}
-			else{
-				console.log('400: Bad Request');
-			}
-		})
+			.then(response=>response.json())
+			.then(user=>{
+				if(user.id){
+					this.props.loadUser(user);
+					this.props.onNavigationStatusChange('home');
+				}
+				else{
+					this.setState({incorrectCombination:true});
+					console.log('Wrong Combination');
+				}
+			})
+		}
 	}
 	render(){
 		const{onNavigationStatusChange}=this.props;
@@ -44,13 +48,14 @@ class LogIn extends Component{
 					      <legend className="f2 fw6 ph0 mh0">Log In</legend>
 					      <div className="mt3">
 					        <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-					        <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address" onChange={this.onEmailChange} />
+					        <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address" onChange={this.onEmailChange} onKeyPress={this.onSubmitLogIn} />
 					      </div>
 					      <div className="mv3">
 					        <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-					        <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" onChange={this.onPasswordChange} />
+					        <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" onChange={this.onPasswordChange} onKeyPress={this.onSubmitLogIn} />
 					      </div>
 					    </fieldset>
+					    {this.state.incorrectCombination?<p>Incorrect Email or Password.Try Again.</p>:null}
 					    <div className="">
 					      <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Log in" onClick={this.onSubmitLogIn} />
 					    </div>
