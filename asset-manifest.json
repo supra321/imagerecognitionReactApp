@@ -1,24 +1,25 @@
 {
   "files": {
-    "main.css": "/imagerecognitionReactApp/static/css/main.4aca057d.chunk.css",
-    "main.js": "/imagerecognitionReactApp/static/js/main.f27f6c53.chunk.js",
-    "main.js.map": "/imagerecognitionReactApp/static/js/main.f27f6c53.chunk.js.map",
+    "main.css": "/imagerecognitionReactApp/static/css/main.7c282b3e.chunk.css",
+    "main.js": "/imagerecognitionReactApp/static/js/main.ec7731d9.chunk.js",
+    "main.js.map": "/imagerecognitionReactApp/static/js/main.ec7731d9.chunk.js.map",
     "runtime-main.js": "/imagerecognitionReactApp/static/js/runtime-main.f98df0a5.js",
     "runtime-main.js.map": "/imagerecognitionReactApp/static/js/runtime-main.f98df0a5.js.map",
     "static/css/2.3b6f1bda.chunk.css": "/imagerecognitionReactApp/static/css/2.3b6f1bda.chunk.css",
-    "static/js/2.bb010472.chunk.js": "/imagerecognitionReactApp/static/js/2.bb010472.chunk.js",
-    "static/js/2.bb010472.chunk.js.map": "/imagerecognitionReactApp/static/js/2.bb010472.chunk.js.map",
+    "static/js/2.e11e469b.chunk.js": "/imagerecognitionReactApp/static/js/2.e11e469b.chunk.js",
+    "static/js/2.e11e469b.chunk.js.map": "/imagerecognitionReactApp/static/js/2.e11e469b.chunk.js.map",
     "index.html": "/imagerecognitionReactApp/index.html",
-    "precache-manifest.b2691a5bb927569d34cf1801dbfcfd7d.js": "/imagerecognitionReactApp/precache-manifest.b2691a5bb927569d34cf1801dbfcfd7d.js",
+    "precache-manifest.9864123095f6c0ce38e931d3fb37fb8d.js": "/imagerecognitionReactApp/precache-manifest.9864123095f6c0ce38e931d3fb37fb8d.js",
     "service-worker.js": "/imagerecognitionReactApp/service-worker.js",
     "static/css/2.3b6f1bda.chunk.css.map": "/imagerecognitionReactApp/static/css/2.3b6f1bda.chunk.css.map",
-    "static/css/main.4aca057d.chunk.css.map": "/imagerecognitionReactApp/static/css/main.4aca057d.chunk.css.map"
+    "static/css/main.7c282b3e.chunk.css.map": "/imagerecognitionReactApp/static/css/main.7c282b3e.chunk.css.map",
+    "static/media/defaultImage.jpg": "/imagerecognitionReactApp/static/media/defaultImage.e3b5ab83.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.f98df0a5.js",
     "static/css/2.3b6f1bda.chunk.css",
-    "static/js/2.bb010472.chunk.js",
-    "static/css/main.4aca057d.chunk.css",
-    "static/js/main.f27f6c53.chunk.js"
+    "static/js/2.e11e469b.chunk.js",
+    "static/css/main.7c282b3e.chunk.css",
+    "static/js/main.ec7731d9.chunk.js"
   ]
 }
