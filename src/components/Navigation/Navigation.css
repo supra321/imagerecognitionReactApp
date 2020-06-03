@@ -1,0 +1,9 @@
+.hover-black:hover{
+	background-color: black !important;
+}
+.hover-black:focus{
+	background-color: black !important;
+}
+.width{
+	max-width: 25em !important;
+}
